@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>{{ department }} Haftalık Ders Programı</h2>
+  {% if file_name %}
+    <p><a class="btn" href="{{ url_for('download', filename=file_name) }}">Excel Dosyasını İndir</a></p>
+  {% endif %}
+  <table>
+    <tr><th>Gün</th><th>Saat</th><th>Sınıf</th><th>Ders</th><th>Derslik</th><th>Öğretim Üyesi</th></tr>
+    {% for entry in entries %}
+      <tr>
+        <td>{{ entry.day }}</td>
+        <td>{{ entry.hour }}</td>
+        <td>{{ entry.class_column }}. Sınıf</td>
+        <td>{{ entry.course.code }} - {{ entry.course.name }}</td>
+        <td>{{ entry.course.classroom }}</td>
+        <td>{{ entry.instructor_display }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

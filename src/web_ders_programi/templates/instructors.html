@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Öğretim Üyeleri</h2>
+  <form method="post">
+    <label>Ad Soyad<input name="name" required></label>
+    <label>Rol<select name="role"><option>Öğretim Üyesi</option><option>Yönetici</option></select></label>
+    <button class="btn" type="submit">Kaydet</button>
+  </form>
+  <table><tr><th>ID</th><th>Ad Soyad</th><th>Rol</th></tr>
+  {% for instructor in instructors %}<tr><td>{{ instructor.id }}</td><td>{{ instructor.name }}</td><td>{{ instructor.role }}</td></tr>{% endfor %}
+  </table>
+</div>
+{% endblock %}

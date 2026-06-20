@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Web Ders Programı{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; color: #1f2937; }
+    header { background: #1f4e79; color: white; padding: 18px 32px; }
+    nav { background: #e5eef7; padding: 12px 32px; }
+    nav a { margin-right: 18px; color: #1f4e79; text-decoration: none; font-weight: bold; }
+    main { padding: 28px 32px; max-width: 1180px; margin: 0 auto; }
+    table { border-collapse: collapse; width: 100%; background: white; margin-top: 18px; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px; vertical-align: top; }
+    th { background: #e5eef7; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 1px 5px #d0d7de; margin-bottom: 18px; }
+    .btn { display: inline-block; padding: 9px 12px; background: #1f4e79; color: white; border-radius: 6px; text-decoration: none; border: none; cursor: pointer; }
+    .btn-danger { background: #b42318; }
+    .messages { list-style: none; padding: 0; }
+    .messages li { padding: 10px; background: #ecfdf3; border: 1px solid #abefc6; margin-bottom: 8px; border-radius: 6px; }
+    input, select { padding: 8px; width: 100%; box-sizing: border-box; margin-top: 4px; }
+    label { display: block; margin-bottom: 12px; font-weight: bold; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Web Arayüzünden Otomatik Ders Programı Oluşturma</h1>
+</header>
+<nav>
+  <a href="{{ url_for('index') }}">Ana Sayfa</a>
+  <a href="{{ url_for('courses') }}">Dersler</a>
+  <a href="{{ url_for('add_course') }}">Ders Ekle</a>
+  <a href="{{ url_for('rooms') }}">Derslikler</a>
+  <a href="{{ url_for('instructors') }}">Öğretim Üyeleri</a>
+</nav>
+<main>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="messages">
+        {% for category, message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+</body>
+</html>

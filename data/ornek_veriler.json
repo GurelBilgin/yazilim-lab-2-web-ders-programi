@@ -1,0 +1,92 @@
+{
+  "departments": [
+    "Yazılım Mühendisliği",
+    "Bilgisayar Mühendisliği"
+  ],
+  "classrooms": [
+    {
+      "room_id": "D201",
+      "capacity": 80,
+      "status": "NORMAL"
+    },
+    {
+      "room_id": "D301",
+      "capacity": 80,
+      "status": "NORMAL"
+    },
+    {
+      "room_id": "LAB1",
+      "capacity": 40,
+      "status": "LAB"
+    },
+    {
+      "room_id": "S018",
+      "capacity": 70,
+      "status": "NORMAL"
+    }
+  ],
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Prof. Dr. H. Tarık DURU",
+      "role": "Öğretim Üyesi"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Öğr. Üyesi E. Pınar HACIBEYOĞLU",
+      "role": "Öğretim Üyesi"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Öğr. Üyesi Vildan YAZICI",
+      "role": "Öğretim Üyesi"
+    },
+    {
+      "id": 4,
+      "name": "Yönetici",
+      "role": "Yönetici"
+    }
+  ],
+  "courses": [
+    {
+      "code": "MAT125",
+      "name": "LİNEER CEBİR",
+      "weekly_hours": 3,
+      "department": "Ortak",
+      "semester": 2,
+      "instructor": "Prof. Dr. H. Tarık DURU",
+      "classroom": "D301",
+      "course_type": "Zorunlu"
+    },
+    {
+      "code": "YZM219",
+      "name": "YAZILIM GEREKSİNİM ANALİZİ",
+      "weekly_hours": 3,
+      "department": "Yazılım Mühendisliği",
+      "semester": 4,
+      "instructor": "Dr. Öğr. Üyesi E. Pınar HACIBEYOĞLU",
+      "classroom": "D201",
+      "course_type": "Zorunlu"
+    },
+    {
+      "code": "MAT220",
+      "name": "SAYISAL YÖNTEMLER",
+      "weekly_hours": 3,
+      "department": "Bilgisayar Mühendisliği",
+      "semester": 4,
+      "instructor": "Dr. Öğr. Üyesi Vildan YAZICI",
+      "classroom": "S018",
+      "course_type": "Zorunlu"
+    },
+    {
+      "code": "S018",
+      "name": "ALAN SEÇMELİ DERS I",
+      "weekly_hours": 2,
+      "department": "Yazılım Mühendisliği",
+      "semester": 6,
+      "instructor": "Yönetici",
+      "classroom": "D201",
+      "course_type": "Seçmeli"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Ana Sayfa{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Program Oluştur</h2>
+  <p>Seçilen bölüm için çakışma kontrolü yapan haftalık ders programı oluşturulur ve Excel çıktısı hazırlanır.</p>
+  {% for department in departments %}
+    <a class="btn" href="{{ url_for('schedule', department=department) }}">{{ department }} Programı Oluştur</a>
+  {% endfor %}
+</div>
+<div class="card">
+  <h2>Özet</h2>
+  <p>Toplam ders sayısı: <strong>{{ courses|length }}</strong></p>
+</div>
+{% endblock %}

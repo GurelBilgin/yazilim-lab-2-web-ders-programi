@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Ders Ekle / Güncelle</h2>
+  <form method="post">
+    <label>Ders Kodu<input name="code" required></label>
+    <label>Ders Adı<input name="name" required></label>
+    <label>Haftalık Saat<input name="weekly_hours" type="number" min="1" max="6" value="3" required></label>
+    <label>Bölüm
+      <select name="department">
+        {% for department in departments %}<option>{{ department }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Dönem
+      <select name="semester">
+        <option value="2">1. Sınıf</option>
+        <option value="4">2. Sınıf</option>
+        <option value="6">3. Sınıf</option>
+        <option value="8">4. Sınıf</option>
+      </select>
+    </label>
+    <label>Öğretim Üyesi
+      <select name="instructor">
+        <option value="">Boş</option>
+        {% for instructor in instructors %}<option>{{ instructor.name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Derslik
+      <select name="classroom">
+        <option value="">Boş</option>
+        {% for room in classrooms %}<option>{{ room.room_id }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Ders Türü
+      <select name="course_type"><option>Zorunlu</option><option>Seçmeli</option></select>
+    </label>
+    <button class="btn" type="submit">Kaydet</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Derslikler</h2>
+  <form method="post">
+    <label>Derslik ID<input name="room_id" required></label>
+    <label>Kapasite<input name="capacity" type="number" value="40"></label>
+    <label>Statü<select name="status"><option>NORMAL</option><option>LAB</option></select></label>
+    <button class="btn" type="submit">Derslik Kaydet</button>
+  </form>
+  <table><tr><th>Derslik</th><th>Kapasite</th><th>Statü</th></tr>
+  {% for room in classrooms %}<tr><td>{{ room.room_id }}</td><td>{{ room.capacity }}</td><td>{{ room.status }}</td></tr>{% endfor %}
+  </table>
+</div>
+{% endblock %}
