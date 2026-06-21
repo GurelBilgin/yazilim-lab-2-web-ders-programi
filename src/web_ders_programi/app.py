@@ -7,12 +7,37 @@ from flask import Flask, flash, redirect, render_template, request, send_from_di
 from .excel_exporter import export_schedule
 from .models import Classroom, Course, Instructor
 from .repository import MemoryRepository
-from .scheduler import build_department_schedule
+from .scheduler import DAYS, HOURS, build_department_schedule
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA = PACKAGE_ROOT / "data" / "ornek_veriler.json"
 DOWNLOAD_DIR = PACKAGE_ROOT / "downloads"
+
+
+def build_grid_rows(entries):
+    entries_by_position = {
+        (entry.day, entry.hour, entry.class_column): entry
+        for entry in entries
+    }
+
+    rows = []
+    for day in DAYS:
+        first_row_of_day = True
+        for hour in HOURS:
+            rows.append(
+                {
+                    "day": day,
+                    "day_display": day if first_row_of_day else "",
+                    "hour": hour,
+                    "cells": {
+                        class_no: entries_by_position.get((day, hour, class_no))
+                        for class_no in range(1, 5)
+                    },
+                }
+            )
+            first_row_of_day = False
+    return rows
 
 
 def create_app(repository: MemoryRepository | None = None) -> Flask:
@@ -103,7 +128,7 @@ def create_app(repository: MemoryRepository | None = None) -> Flask:
             entries = []
             file_name = ""
 
-        return render_template("schedule.html", department=department, entries=entries, file_name=file_name)
+        return render_template("schedule.html", department=department, entries=entries, grid_rows=build_grid_rows(entries), class_columns=[1, 2, 3, 4], file_name=file_name)
 
     @app.route("/download/<filename>")
     def download(filename: str):

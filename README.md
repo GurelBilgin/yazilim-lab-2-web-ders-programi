@@ -13,6 +13,7 @@ Bu proje, **Yazılım Lab II** dersi kapsamında geliştirilmiş web tabanlı bi
 - Aynı öğretim üyesi, derslik ve sınıf için saat çakışmasını engelleme
 - Dersleri mümkün olduğunca blok saatler hâlinde yerleştirme
 - `Yönetici` öğretim üyesi olarak görünüyorsa Excel çıktısında öğretim üyesi alanını boş bırakma
+- Haftalık ders programını web arayüzünde Excel benzeri çizelge olarak görüntüleme
 - Haftalık ders programını Excel dosyası olarak dışa aktarma
 - Modüler Python proje yapısı
 - Birim testleri ile yerleşim ve çıktı mantığını kontrol etme
@@ -101,6 +102,10 @@ Program, dersleri bölüm ve dönem bilgisine göre haftalık çizelgeye yerleş
 
 Veri içinde öğretim üyesi alanı `Yönetici` olarak gelirse, bu değer gerçek öğretim üyesi adı gibi gösterilmez. Excel çıktısında öğretim üyesi satırı boş bırakılır. Bu sayede geçici veya sistemsel kullanıcı bilgileri ders programında hoca adı gibi görünmez.
 
+## Web Arayüzü Görüntüleme Mantığı
+
+Program oluşturulduğunda web arayüzünde yalnızca dolu ders satırları listelenmez. Bunun yerine gün-saat satırları ve 1, 2, 3, 4. sınıf sütunlarından oluşan haftalık çizelge gösterilir. Böylece ekranda görünen yapı Excel çıktısıyla aynı mantığa sahip olur. Boş saatler boş hücre olarak kalır; dolu hücrelerde ders kodu, ders adı, öğretim üyesi ve derslik bilgisi gösterilir.
+
 ## Excel Çıktıları
 
 Web arayüzünde program oluşturulduğunda `downloads/` klasöründe aşağıdaki dosyalar üretilebilir:
@@ -130,3 +135,4 @@ Bu sürümde eski yapıdaki tekrar eden dosyalar, önceden oluşturulmuş Excel 
 - Gizem YALÇIN
 - Berkay ARAS
 - Ali AKSOY
+

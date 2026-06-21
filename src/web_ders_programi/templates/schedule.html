@@ -1,22 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="card">
-  <h2>{{ department }} Haftalık Ders Programı</h2>
-  {% if file_name %}
-    <p><a class="btn" href="{{ url_for('download', filename=file_name) }}">Excel Dosyasını İndir</a></p>
-  {% endif %}
-  <table>
-    <tr><th>Gün</th><th>Saat</th><th>Sınıf</th><th>Ders</th><th>Derslik</th><th>Öğretim Üyesi</th></tr>
-    {% for entry in entries %}
+  <div class="page-title-row">
+    <div>
+      <h2>{{ department }} Haftalık Ders Programı</h2>
+      <p class="muted">Program; gün, saat ve sınıf sütunlarına göre Excel çıktısıyla aynı mantıkta gösterilir.</p>
+    </div>
+    {% if file_name %}
+      <a class="btn" href="{{ url_for('download', filename=file_name) }}">Excel Dosyasını İndir</a>
+    {% endif %}
+  </div>
+
+  <table class="schedule-grid">
+    <thead>
       <tr>
-        <td>{{ entry.day }}</td>
-        <td>{{ entry.hour }}</td>
-        <td>{{ entry.class_column }}. Sınıf</td>
-        <td>{{ entry.course.code }} - {{ entry.course.name }}</td>
-        <td>{{ entry.course.classroom }}</td>
-        <td>{{ entry.instructor_display }}</td>
+        <th>Gün</th>
+        <th>Saat</th>
+        <th>1. Sınıf</th>
+        <th>2. Sınıf</th>
+        <th>3. Sınıf</th>
+        <th>4. Sınıf</th>
       </tr>
-    {% endfor %}
+    </thead>
+    <tbody>
+      {% for row in grid_rows %}
+        <tr>
+          <td class="day-cell">{{ row.day_display }}</td>
+          <td class="hour-cell">{{ row.hour }}</td>
+          {% for class_no in class_columns %}
+            <td class="program-cell">
+              {% if row.cells[class_no] %}
+                <div class="course-card">
+                  <strong>{{ row.cells[class_no].course.code }} - {{ row.cells[class_no].course.name }}</strong>
+                  {% if row.cells[class_no].instructor_display %}
+                    <span>Öğretim Üyesi: {{ row.cells[class_no].instructor_display }}</span>
+                  {% endif %}
+                  {% if row.cells[class_no].course.classroom %}
+                    <span>Derslik: {{ row.cells[class_no].course.classroom }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
   </table>
 </div>
 {% endblock %}
